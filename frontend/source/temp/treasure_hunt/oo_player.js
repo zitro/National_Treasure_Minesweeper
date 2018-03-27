@@ -1,4 +1,8 @@
 let player = () => {
+
+
+
+	// make controls in this class found in board
   class Player {
     constructor(x, y, alive, direction){
       x: -1,
