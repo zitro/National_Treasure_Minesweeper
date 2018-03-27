@@ -1,42 +1,13 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en" dir="ltr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>National Treasure</title>
-		<link href='http://fonts.googleapis.com/css?family=Orbitron:400,900|Press+Start+2P' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="css/main.css" />
-		<script src="js/modernizr.js"></script>
-		<script src="js/loader.js"></script>
 	</head>
 	<body>
-		<div id="game">
-			<div class="background"></div>
-			<div class="screen" id="splash-screen">
-				<h1 class="logo"><span>National Treasure</span></h1>
-				<div class="progress">
-					<div class="indicator"></div>
-				</div>
-				<span class="continue">Click to continue</span>
-			</div>
-			<div class="screen" id="main-menu">
-				<h1 class="logo"><span>Dungeon</span> Treasure Hunt</h1>
-				<ul class="menu">
-					<li><button name="game-screen">Play</button></li>
-					<!--<li><button name="settings">Settings</button></li>-->
-					<li><button name="about">About</button></li>
-				</ul>
-			</div>
-			<div class="screen" id="game-screen">
-				<div class="game-board grid-size"></div>
-				<div class="score">Score: <span class="num">0</span></div>
-				<div class="time"><div class="bar"></div></div>
-				<div class="announcement">TEST</div>
-			</div>
-			<div class="screen" id="settings">
-				<h1 class="logo">National Treasure</h1>
-			</div>
-		
-			<div id="grid-proto" class="grid-size"></div>
-		</div>
+	<div id='title'><span>Naitonal</span>Treasure</div>
+	<div id='board'></div>
+
+		<script src='source/index.js'></script>
 	</body>
 </html>
