@@ -2,7 +2,7 @@
 let startGame = () => {
 	let startPosition = document.getElementById("1")
 	let currentPosition = startPosition
-	let nicCage = '<img src="media/ncage.png">'
+	let nicCage = '<img src="media/ncbody.png">'
 	currentPosition.innerHTML = nicCage
 
 	document.body.onkeydown= event => {
