@@ -1,15 +1,23 @@
-class Board{
-	constructor(rows, columns,  player){
-		rows: 10,
-		columns: 16,
-		user: this.user
-	}
-	fillBoard () {
-		
-	}
-}
+document.addEventListener('DOMContentLoaded', event =>{
+	function fillBoard () {
+		let boardDiv = document.getElementById('board_container')
+		let cells = 101;
+		let i = 1
 
-function getUsers(){
-return fetch(http://localhost:3000/users)
-.then(res => res.json())
-.then(console.log(json))
+		while(i < cells){
+		let cellDiv = document.createElement('div')
+		cellDiv.innerText = 'hi'
+		cellDiv.id = i;
+		boardDiv.append(cellDiv);
+		i++;
+		}
+	}
+	fillBoard()
+	startGame()
+})
+
+
+// function getUsers(){
+// return fetch(http://localhost:3000/users)
+// .then(res => res.json())
+// .then(console.log(json))}
