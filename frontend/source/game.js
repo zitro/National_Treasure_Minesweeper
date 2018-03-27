@@ -9,49 +9,30 @@ let startGame = () => {
 
 		switch(event.keyCode){
 			case 38:
-				// moveUp(-10);
-				currentPosition.innerText = ''
-				let upDivId = parseInt(currentPosition.id) - 10
-				let upDiv = document.getElementById(upDivId)
-				upDiv.innerHTML = nicCage;
-				currentPosition = upDiv;
+			// up
+				move(-10);
 				break;
 			case 40:
-				// moveDown();
-				currentPosition.innerText = ''
-				let downDivId = parseInt(currentPosition.id) + 10
-				let downDiv = document.getElementById(downDivId)
-				downDiv.innerHTML = nicCage;
-				currentPosition = downDiv;
+			// down
+				move(10);
 				break;
 			case 39:
-				currentPosition.innerText = ''
-				let rightDivId = parseInt(currentPosition.id) + 1
-				let rightDiv = document.getElementById(rightDivId)
-				rightDiv.innerHTML = nicCage;
-				currentPosition = rightDiv;
+			// right
+				move(1);
 				break;
 			case 37:
-				// moveLeft();
-				currentPosition.innerText = ''
-				let leftDivId = parseInt(currentPosition.id) - 1
-				let leftDiv = document.getElementById(leftDivId)
-				leftDiv.innerHTML = nicCage;
-				currentPosition = leftDiv;
+				// left
+				move(-1);
 				break;
 		}
-	// }
-	// moveUp () => {
-	//
-	// }
-	// moveDown () => {
-	//
-	// }
-	// moveRight () => {
-	//
-	//
-	// }
-	// moveLeft () => {
-	//
+	}
+	move = (number) => {
+		currentPosition.innerText = '';
+		let newDivId = parseInt(currentPosition.id) + number;
+		if (newDivId <= 100 && newDivId > 0){
+			let newDiv = document.getElementById(newDivId);
+			newDiv.innerHTML = nicCage;
+			currentPosition = newDiv;
+		}
 	}
 }
