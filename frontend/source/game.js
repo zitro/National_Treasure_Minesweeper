@@ -2,7 +2,8 @@
 let startGame = () => {
 	let startPosition = document.getElementById("1")
 	let currentPosition = startPosition
-	let nicCage = '<img src="media/nc/ncbody.png">'
+	let nc = ['<img src="media/nc/ncbody.png">', '<img src="media/nc/ncoo.png">', '<img src="media/nc/ncmouth.png">', '<img src="media/nc/nchair.png">', '<img src="media/nc/ncglasses.png">' ,'<img src="media/nc/nc80.png">']
+	let nicCage = nc[Math.floor(Math.random()*nc.length)];
 	let brick = '<img src="media/brick.png">'
 	currentPosition.innerHTML = nicCage
 

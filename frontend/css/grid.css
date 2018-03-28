@@ -1,11 +1,11 @@
 #board_container {
 	/* border: 1px solid grey; */
 	/* background-image: url("media/ss.png"); */
-	background-color: ##666768;
+	background-color: grey;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  grid-gap: 5px;
-  grid-auto-rows: minmax(35px, auto);
+  grid-gap: 1px;
+  grid-auto-rows: minmax(1px, auto);
 
 
 	#nicCage {
