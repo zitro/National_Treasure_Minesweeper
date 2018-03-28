@@ -5,6 +5,7 @@ let startGame = () => {
 	let currentPosition = startPosition
 	let nc = ['<img src="media/nc/ncbody.png">', '<img src="media/nc/ncoo.png">', '<img src="media/nc/ncmouth.png">', '<img src="media/nc/nchair.png">', '<img src="media/nc/ncglasses.png">' ,'<img src="media/nc/nc80.png">']
 	let nicCage = nc[Math.floor(Math.random()*nc.length)];
+	let lifeMeter = 100;
 
 	currentPosition.innerHTML = nicCage
 
@@ -47,15 +48,20 @@ let startGame = () => {
 			newDiv.innerHTML = nc[Math.floor(Math.random()*nc.length)];
 			currentPosition = newDiv;
 		}
-		hitBomb = () => {
-			if (currentPosition.className === 'bomb'){
-				//decriment life meter
-				//make an alert saying you lost life and show how much is left
-				//if life meter is less than 0 game is over 
-				//set className to tile
+		hitItem = (item, points) => {
+			if (currentPosition.className === item){
+				if (lifeMeter > 0){
+					lifeMeter += points;
+					currentPosition.className = 'tiles'
+				} else if (lifeMeter < 0) {
+					console.log("GAME OVER")
+					//only works if it is at zero
+				}
 			}
 		}
-		hitBomb()
+		hitItem("bomb", -20)
+		hitItem("power-up", 5)
+		console.log(lifeMeter);
 	}
 
 
