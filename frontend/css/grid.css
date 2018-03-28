@@ -1,6 +1,7 @@
 #board_container {
-	border: 1px solid black;
-	background-color: gray;
+	/* border: 1px solid grey; */
+	/* background-image: url("media/ss.png"); */
+	background-color: red;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-gap: 5px;
