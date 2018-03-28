@@ -8,10 +8,13 @@ let startGame = () => {
 	let lifeMeter = 100;
 	let bomb = document.createElement('img')
 	bomb.src='media/temp_bomb.png'
+	bomb.className = 'action'
 	let treasure = document.createElement('img')
 	treasure.src='media/temp_treasure.png'
+	treasure.className = 'action'
 	let powerUp = document.createElement('img')
 	powerUp.src='media/temp_powerup.png'
+	powerUp.className = 'action'
 
 	currentPosition.innerHTML = nicCage
 
@@ -56,7 +59,7 @@ let startGame = () => {
 		}
 		hitItem = (item, points, picture) => {
 			if (currentPosition.className === item){
-				currentPosition.append(picture)
+				actionTimeImgs(item)
 				if (lifeMeter > 0){
 					lifeMeter += points;
 					currentPosition.className = 'tiles'
@@ -72,6 +75,18 @@ let startGame = () => {
 		console.log(lifeMeter);
 	}
 
+	function actionTimeImgs(item){
+		if (item === "bomb"){
+			let win = window.open('media/bomb.png');
+			setTimeout(function () { win.close();}, 1300);
+		}else if (item === "treasure"){
+			let win = window.open('media/treasure2.png');
+			setTimeout(function () { win.close();}, 1400);
+		}else if(item === "power-up"){
+			let win = window.open('media/powerup.png');
+			setTimeout(function () { win.close();}, 1300);
+		}
+	}
 
 
 }
