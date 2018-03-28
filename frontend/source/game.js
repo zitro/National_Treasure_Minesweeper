@@ -6,6 +6,12 @@ let startGame = () => {
 	let nc = ['<img src="media/nc/ncbody.png">', '<img src="media/nc/ncoo.png">', '<img src="media/nc/ncmouth.png">', '<img src="media/nc/nchair.png">', '<img src="media/nc/ncglasses.png">' ,'<img src="media/nc/nc80.png">']
 	let nicCage = nc[Math.floor(Math.random()*nc.length)];
 	let lifeMeter = 100;
+	let bomb = document.createElement('img')
+	bomb.src='media/temp_bomb.png'
+	let treasure = document.createElement('img')
+	treasure.src='media/temp_treasure.png'
+	let powerUp = document.createElement('img')
+	powerUp.src='media/temp_powerup.png'
 
 	currentPosition.innerHTML = nicCage
 
@@ -48,8 +54,9 @@ let startGame = () => {
 			newDiv.innerHTML = nc[Math.floor(Math.random()*nc.length)];
 			currentPosition = newDiv;
 		}
-		hitItem = (item, points) => {
+		hitItem = (item, points, picture) => {
 			if (currentPosition.className === item){
+				currentPosition.append(picture)
 				if (lifeMeter > 0){
 					lifeMeter += points;
 					currentPosition.className = 'tiles'
@@ -59,8 +66,9 @@ let startGame = () => {
 				}
 			}
 		}
-		hitItem("bomb", -20)
-		hitItem("power-up", 5)
+		hitItem("bomb", -20, bomb)
+		hitItem("power-up", 5, powerUp)
+		hitItem("treasure", 50, treasure)
 		console.log(lifeMeter);
 	}
 
