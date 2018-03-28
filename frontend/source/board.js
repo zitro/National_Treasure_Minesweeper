@@ -13,38 +13,40 @@ document.addEventListener('DOMContentLoaded', event =>{
 		boardDiv.append(cellDiv);
 
 		i++;
-		addTreasureToBoard();
-		addBombsToBoard();
-		addPowerUp();
+		}
+		addToBoard(3, "treasure");
+		addToBoard(20, "bomb");
+		addToBoard(10, "power-up");
+	}
+
+	function addToBoard (num, className) {
+		let counter = 1;
+		while(counter <= num){
+			let tiles = document.getElementsByClassName('tiles')
+			let index = Math.floor(Math.random() * (tiles.length - 1) + 1)
+			let treasureTiles = tiles[index]
+			treasureTiles.className = className
+			counter++;
 		}
 	}
 
-	function addTreasureToBoard () {
-		let tiles = document.getElementsByClassName('tiles')
-		for(let i = 0; i < tiles.length; i++){
-			if(Math.random() <= 0.0004){
-				tiles[i].className = "treasure";
-			}
-		}
-	}
-
-	function addBombsToBoard () {
-		let tiles = document.getElementsByClassName('tiles')
-		for(let i = 0; i < tiles.length; i++){
-			if(Math.random() <= 0.002){
-				tiles[i].className = "bomb";
-			}
-		}
-	}
-
-	function addPowerUp () {
-		let tiles = document.getElementsByClassName('tiles')
-		for(let i = 0; i < tiles.length; i++){
-			if(Math.random() <= 0.003){
-				tiles[i].className = "power-up";
-			}
-		}
-	}
+	// function addBombsToBoard () {
+	// 	let tiles = document.getElementsByClassName('tiles')
+	// 	for(let i = 0; i < tiles.length; i++){
+	// 		if(Math.random() <= 0.002){
+	// 			tiles[i].className = "bomb";
+	// 		}
+	// 	}
+	// }
+	//
+	// function addPowerUp () {
+	// 	let tiles = document.getElementsByClassName('tiles')
+	// 	for(let i = 0; i < tiles.length; i++){
+	// 		if(Math.random() <= 0.003){
+	// 			tiles[i].className = "power-up";
+	// 		}
+	// 	}
+	// }
 
 	fillBoard()
 	startGame()
