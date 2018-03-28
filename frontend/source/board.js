@@ -7,13 +7,45 @@ document.addEventListener('DOMContentLoaded', event =>{
 
 		while(i < cells){
 		let cellDiv = document.createElement('div')
+		cellDiv.className = "tiles"
 		cellDiv.innerHTML = brick
 		cellDiv.id = i;
 		boardDiv.append(cellDiv);
 
 		i++;
+		addTreasureToBoard();
+		addBombsToBoard();
+		addPowerUp();
 		}
 	}
+
+	function addTreasureToBoard () {
+		let tiles = document.getElementsByClassName('tiles')
+		for(let i = 0; i < tiles.length; i++){
+			if(Math.random() <= 0.0004){
+				tiles[i].className = "treasure";
+			}
+		}
+	}
+
+	function addBombsToBoard () {
+		let tiles = document.getElementsByClassName('tiles')
+		for(let i = 0; i < tiles.length; i++){
+			if(Math.random() <= 0.002){
+				tiles[i].className = "bomb";
+			}
+		}
+	}
+
+	function addPowerUp () {
+		let tiles = document.getElementsByClassName('tiles')
+		for(let i = 0; i < tiles.length; i++){
+			if(Math.random() <= 0.003){
+				tiles[i].className = "power-up";
+			}
+		}
+	}
+
 	fillBoard()
 	startGame()
 })
