@@ -43,6 +43,7 @@ let startGame = () => {
 				break;
 		}
 	}
+	// moving left at position 1
 	move = (number) => {
 		currentPosition.innerHTML = brick;
 		let newDivId = parseInt(currentPosition.id) + number;

@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', event =>{
 		i++;
 		}
 		addToBoard(3, "treasure");
-		addToBoard(20, "bomb");
+		addToBoard(15, "bomb");
 		addToBoard(10, "power-up");
 		addToBoard(1, "exit");
 	}
