@@ -33,7 +33,7 @@ let startGame = () => {
 		let newDivId = parseInt(currentPosition.id) + number;
 		if (newDivId <= 100 && newDivId > 0){
 			let newDiv = document.getElementById(newDivId);
-			newDiv.innerHTML = nicCage;
+			newDiv.innerHTML = nc[Math.floor(Math.random()*nc.length)];;
 			currentPosition = newDiv;
 		}
 	}
