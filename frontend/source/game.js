@@ -2,13 +2,12 @@
 let startGame = () => {
 	let startPosition = document.getElementById("1")
 	let currentPosition = startPosition
-	var nc = ['<img src="media/nc/ncbody.png">', '<img src="media/nc/ncoo.png">', '<img src="media/nc/ncmouth.png">', '<img src="media/nc/nchair.png">', '<img src="media/nc/ncglasses.png">', '<img src="media/nc/nc80.png">'];
-	var nicCage = nc[Math.floor(Math.random() * nc.length)];
-	currentPosition.innerHTML = nicCage;
-	console.log('top')
-	console.log(currentPosition.innerHTML)
+	let nicCage = '<img src="media/nc/ncbody.png">'
+	let brick = '<img src="media/brick.png">'
+	currentPosition.innerHTML = nicCage
 
 	document.body.onkeydown= event => {
+
 		switch(event.keyCode){
 			case 38:
 			// up
@@ -29,9 +28,7 @@ let startGame = () => {
 		}
 	}
 	move = (number) => {
-		currentPosition.innerHTML = '';
-		currentPosition.innerHTML = nicCage;
-		currentPosition.innerText = '';
+		currentPosition.innerHTML = brick;
 		let newDivId = parseInt(currentPosition.id) + number;
 		if (newDivId <= 100 && newDivId > 0){
 			let newDiv = document.getElementById(newDivId);
