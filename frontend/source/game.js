@@ -80,8 +80,8 @@ let startGame = () => {
 			let win = window.open('media/bomb.png');
 			setTimeout(function () { win.close();}, 1300);
 		}else if (item === "treasure"){
-			let win = window.open('media/treasure2.png');
-			setTimeout(function () { win.close();}, 1400);
+			let win = window.open('media/treasure3.png');
+			setTimeout(function () { win.close();}, 1500);
 		}else if(item === "power-up"){
 			let win = window.open('media/powerup.png');
 			setTimeout(function () { win.close();}, 1300);
