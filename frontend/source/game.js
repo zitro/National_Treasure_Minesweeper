@@ -95,6 +95,8 @@ let startGame = () => {
 				}
 			} else if (lifeMeter <= 0) {
 				window.alert("GAME OVER");
+				window.close()
+				location.reload()
 			}
 		}
 	}
