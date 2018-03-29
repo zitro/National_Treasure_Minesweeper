@@ -1,8 +1,6 @@
 
 let startGame = () => {
 	let brick = '<img src="media/brick2.png">'
-	let bombTile = '<img src="media/bombTile.png">'
-	let powerUpTile = '<img src="media/powerUpTile.png">'
 	let treasureTile = '<img src="media/treasureTile.png">'
 	let startPosition = document.getElementById("1")
 	let currentPosition = startPosition
@@ -62,43 +60,40 @@ let startGame = () => {
 	// moving left at position 1
 	move = (number) => {
 		currentPosition.innerHTML = brick;
-		let newDivId = parseInt(currentPosition.id) + number;
 		basePoints++
-		console.log(basePoints)
+    let newDivId = parseInt(currentPosition.id) + number
+		moveFunction = (num) => {
+			newDivId = newDivId + num
+			let newDiv = document.getElementById(newDivId);
+			newDiv.innerHTML = nc[Math.floor(Math.random()*nc.length)];
+			currentPosition = newDiv;
+		}
 		if (newDivId <= 100 && newDivId > 0){
-			let newDiv = document.getElementById(newDivId);
-			newDiv.innerHTML = nc[Math.floor(Math.random()*nc.length)];
-			currentPosition = newDiv;
+			moveFunction(0)
 		} else if (newDivId < 0){
-			newDivId = newDivId + 100
-			let newDiv = document.getElementById(newDivId);
-			newDiv.innerHTML = nc[Math.floor(Math.random()*nc.length)];
-			currentPosition = newDiv;
+			moveFunction(100)
 		}else if (newDivId > 100){
-			newDivId = newDivId - 100
-			let newDiv = document.getElementById(newDivId);
-			newDiv.innerHTML = nc[Math.floor(Math.random()*nc.length)];
-			currentPosition = newDiv;
+			moveFunction(-100)
 		}
 
 	hitItem = (item, points) => {
 		if (currentPosition.className === item){
 			actionTimeImgs(item)
 			if (lifeMeter > 0){
-				lifeMeter += points;
+					lifeMeter += points;
 				if(item === 'bomb'){
-				currentPosition.className = 'tiles'
-				currentPosition.innerHTML = bombTile
-			} else if (item === 'power-up') {
-				currentPosition.className = 'tiles'
-				currentPosition.innerHTML = powerUpTile
+					currentPosition.className = 'tiles'
+					currentPosition.innerHTML = '<img src="media/bombTile.png">'
+				} else if (item === 'power-up') {
+					currentPosition.className = 'tiles'
+					currentPosition.innerHTML = '<img src="media/powerUpTile.png">'
+				}
 			} else if (lifeMeter <= 0) {
 				window.alert("GAME OVER");
 				// window.location.reload(false);
 			}
 		}
 	}
-}
 
 
 	function actionTimeImgs(item){
