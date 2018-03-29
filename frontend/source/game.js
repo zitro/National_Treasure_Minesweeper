@@ -60,8 +60,9 @@ let startGame = () => {
 				break;
 		}
 	}
-	// moving left at position 1
+
 	move = (number) => {
+
 		currentPosition.innerHTML = '<img src="media/brick2.png">';
 		let newDivId = parseInt(currentPosition.id) + number;
 		basePoints++
@@ -75,7 +76,6 @@ let startGame = () => {
 		if (newDivId <= 100 && newDivId > 0){
 			moveFunction(0)
 		} else if (newDivId < 0){
-			newDivId = newDivId + 100
 			moveFunction(100)
 		}else if (newDivId > 100){
 			moveFunction(-100)
@@ -86,6 +86,7 @@ let startGame = () => {
 			actionTimeImgs(item)
 			lifeMeter += points;
 			if (lifeMeter > 0){
+					lifeMeter += points;
 				if(item === 'bomb'){
 					currentPosition.className = 'bomb-tiles'
 				} else if (item === 'power-up'){
