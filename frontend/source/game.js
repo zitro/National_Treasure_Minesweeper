@@ -84,22 +84,20 @@ let startGame = () => {
 	hitItem = (item, points) => {
 		if (currentPosition.className === item){
 			actionTimeImgs(item)
+			lifeMeter += points;
 			if (lifeMeter > 0){
-				lifeMeter += points;
 				if(item === 'bomb'){
-				currentPosition.className = 'tiles'
-				currentPosition.innerHTML = bombTile
-			} else if (item === 'power-up') {
-				currentPosition.className = 'tiles'
-				currentPosition.innerHTML = powerUpTile
+					currentPosition.className = 'tiles'
+					currentPosition.innerHTML = bombTile
+				} else if (item === 'power-up'){
+					currentPosition.className = 'tiles'
+					currentPosition.innerHTML = powerUpTile
+				}
 			} else if (lifeMeter <= 0) {
 				window.alert("GAME OVER");
-				// window.location.reload(false);
 			}
 		}
 	}
-}
-
 
 	function actionTimeImgs(item){
 		if (item === "bomb"){
@@ -116,14 +114,14 @@ let startGame = () => {
 			if(currentPosition.className === 'treasure'){
 				if(treasuresLeft.length === 3){
 					let win = window.open('media/treasure1.png');
-					setTimeout(function () { win.close();}, 2000);
+					setTimeout(function () { win.close();}, 200);
 					console.log('constitution')
 					currentPosition.className = 'tiles';
 					currentPosition.innerHTML = treasureTile
 					basePoints+=50
 				} else if (treasuresLeft.length === 2){
 					let win = window.open('media/treasure2.png');
-					setTimeout(function () { win.close();}, 2000);
+					setTimeout(function () { win.close();}, 200);
 					console.log('glasses')
 					currentPosition.className = 'tiles';
 					currentPosition.innerHTML = treasureTile
@@ -132,7 +130,7 @@ let startGame = () => {
 					console.log('code')
 					codeMaker();
 					let win = window.open('media/treasure3.png');
-					setTimeout(function () { win.close();}, 2000);
+					setTimeout(function () { win.close();}, 200);
 					alert('Memorize your code!')
 					alert(convertedCode);
 					currentPosition.className = 'tiles';
