@@ -1,7 +1,7 @@
 #board_container {
-	/* border: 1px solid grey; */
-	/* background-image: url("media/ss.png"); */
-	background-color: grey;
+	border: 1px solid grey;
+	background-image: url("http://bryanortiz.com/city1.jpg");
+	/* background-color: grey; */
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-gap: 1px;
@@ -19,4 +19,8 @@
 #action{
 float: left;
 margin: 0px 15px 15px 0px;
+}
+
+#title{
+	background-color: black;
 }
