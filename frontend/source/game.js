@@ -3,7 +3,7 @@ let startGame = () => {
 	let brick = '<img src="media/brick.png">'
 	let startPosition = document.getElementById("1")
 	let currentPosition = startPosition
-	let keyDownEvents = [37, 38, 39, 40, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105]
+	let keyDownEvents = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
 	let nc = ['<img src="media/nc/ncbody.png">', '<img src="media/nc/ncoo.png">', '<img src="media/nc/ncmouth.png">', '<img src="media/nc/nchair.png">', '<img src="media/nc/ncglasses.png">' ,'<img src="media/nc/nc80.png">']
 	let nicCage = nc[Math.floor(Math.random()*nc.length)];
 	let treasuresLeft = document.getElementsByClassName('treasure')
@@ -63,29 +63,31 @@ let startGame = () => {
 			currentPosition = newDiv;
 		}
 
-
+		//how to do game over
 	hitItem = (item, points) => {
-	if (currentPosition.className === item){
-		actionTimeImgs(item)
-		if (lifeMeter > 0){
-			lifeMeter += points;
-			currentPosition.className = 'tiles'
-		} else if (lifeMeter < 0) {
-			console.log("GAME OVER")
+		if (currentPosition.className === item){
+			actionTimeImgs(item)
+			if (lifeMeter > 0){
+				lifeMeter += points;
+				currentPosition.className = 'tiles'
+			} else if (lifeMeter < 0) {
+				window.alert("GAME OVER")
+			}
 		}
 	}
-}
+
 
 	function actionTimeImgs(item){
 		if (item === "bomb"){
-			let win = window.open('media/bomb.png');
-			setTimeout(function () { win.close();}, 1500);
+			console.log('bomb')
+			// let win = window.open('media/bomb.png');
+			// setTimeout(function () { win.close();}, 150);
 		}else if(item === "power-up"){
-			let win = window.open('media/powerup.png');
-			setTimeout(function () { win.close();}, 1500);
+			console.log('power-up')
+			// let win = window.open('media/powerup.png');
+			// setTimeout(function () { win.close();}, 150);
 		}
 	}
-
 
 	treasureChest = () => {
 			if(currentPosition.className === 'treasure'){
@@ -104,16 +106,17 @@ let startGame = () => {
 				} else if (treasuresLeft.length === 1){
 					console.log('code')
 					codeMaker();
-					//show alert for the code
+					alert('Memorize your code!')
+					alert(code);
 					let win = window.open('media/treasure3.png');
 					setTimeout(function () { win.close();}, 2000);
 					currentPosition.className = 'tiles';
 				}
 			}
+
 		}
-		levelUp = () => {
-			// debugger
-		}
+		//make exit a different color after it has been walked over
+
 
 		codeMaker = () => {
   		let counter = 1
@@ -123,6 +126,32 @@ let startGame = () => {
     		counter ++;
   		}
 		}
+		levelUp = () => {
+			if(currentPosition.className === 'exit'){
+				console.log('exit')
+				let index = 0
+				//make color change to mark exit
+				if(!treasuresLeft.length){
+					window.alert("enter the secret code")
+					document.body.onkeydown = event => {
+						const key = event.which
+
+						if(code[index] === key){
+							index++;
+							if(index === code.length){
+								alert('THE CODE HAS BEEN CRACKED!!!! YOU WIN!!!!');
+
+								index = 0;
+							}
+						} else {
+							alert('Code not cracked... please try again')
+							index = 0;
+						}
+					}
+				}
+			}
+		}
+
 		hitItem("bomb", -20)
 		hitItem("power-up", 5)
 		console.log(lifeMeter);

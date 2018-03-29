@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', event =>{
 		i++;
 		}
 		addToBoard(3, "treasure");
-		addToBoard(15, "bomb");
+		addToBoard(10, "bomb");
 		addToBoard(10, "power-up");
 		addToBoard(1, "exit");
 	}
@@ -30,24 +30,6 @@ document.addEventListener('DOMContentLoaded', event =>{
 			counter++;
 		}
 	}
-
-	// function addBombsToBoard () {
-	// 	let tiles = document.getElementsByClassName('tiles')
-	// 	for(let i = 0; i < tiles.length; i++){
-	// 		if(Math.random() <= 0.002){
-	// 			tiles[i].className = "bomb";
-	// 		}
-	// 	}
-	// }
-	//
-	// function addPowerUp () {
-	// 	let tiles = document.getElementsByClassName('tiles')
-	// 	for(let i = 0; i < tiles.length; i++){
-	// 		if(Math.random() <= 0.003){
-	// 			tiles[i].className = "power-up";
-	// 		}
-	// 	}
-	// }
 
 	fillBoard()
 	startGame()
