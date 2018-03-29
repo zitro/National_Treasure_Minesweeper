@@ -1,6 +1,6 @@
 
 let startGame = () => {
-	let brick = '<img src="media/brick.png">'
+	let brick = '<img src="media/brick2.png">'
 	let startPosition = document.getElementById("1")
 	let currentPosition = startPosition
 	let keyDownEvents = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
@@ -10,6 +10,7 @@ let startGame = () => {
 	let lifeMeter = 100;
 	let code = [];
 	let convertedCode = []
+	let exit = document.getElementsByClassName('exit')
 
 	let bomb = document.createElement('img')
 	bomb.src='media/temp_bomb.png'
@@ -127,6 +128,7 @@ let startGame = () => {
 				console.log('exit')
 				let index = 0
 				//make color change to mark exit
+
 				if(!treasuresLeft.length){
 					window.alert("Press enter and type in the secret code")
 					document.body.onkeydown = event => {
@@ -144,6 +146,8 @@ let startGame = () => {
 							index = 0;
 						}
 					}
+				} else {
+					alert("You haven't collected all the treasures yet... please come back when you have a code")
 				}
 			}
 		}
@@ -164,13 +168,22 @@ let startGame = () => {
 				convertedCode.push(keyDownDictionary[code[i]])
 			}
 		}
+		let addExitToBoard = () => {
+			let exit = document.getElementsByClassName('exit')
+			exit[0].innerHTML = "<img src='media/exit.png'>"
 
+		}
+
+		addExitToBoard()
 		hitItem("bomb", -20)
 		hitItem("power-up", 5)
 		console.log(lifeMeter);
 		treasureChest()
 		levelUp()
+
 	}
+
+
 
 
 
