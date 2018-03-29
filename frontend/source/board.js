@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', event =>{
 		}
 		addToBoard(3, "treasure");
 		addToBoard(10, "bomb");
-		addToBoard(0, "power-up");
+		addToBoard(10, "power-up");
 		addToBoard(1, "exit");
 	}
 
@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', event =>{
 			counter++;
 		}
 	}
-
 	fillBoard()
 	startGame()
 })
