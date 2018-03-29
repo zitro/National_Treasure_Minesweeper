@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', event =>{
 			counter++;
 		}
 	}
-
 	fillBoard()
 	startGame()
 })
