@@ -1,20 +1,24 @@
 
 let startGame = () => {
-	let brick = '<img src="media/brick2.png">'
-	let treasureTile = '<img src="media/treasureTile.png">'
+
 	let startPosition = document.getElementById("1")
 	let currentPosition = startPosition
-	let keyDownEvents = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
+
 	let nc = ['<img src="media/nc/ncbody.png">', '<img src="media/nc/ncoo.png">', '<img src="media/nc/ncmouth.png">', '<img src="media/nc/nchair.png">', '<img src="media/nc/ncglasses.png">' ,'<img src="media/nc/nc80.png">']
 	let nicCage = nc[Math.floor(Math.random()*nc.length)];
+	currentPosition.innerHTML = nicCage
+
 	let treasuresLeft = document.getElementsByClassName('treasure')
-	let lifeMeter = 100;
-	let basePoints = 0;
-	let code = [];
-	let convertedCode = []
+
 	let exit = document.getElementsByClassName('exit')
 	let exitIsVisable = false;
 
+	let lifeMeter = 100;
+	let basePoints = 0;
+
+	let keyDownEvents = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
+	let code = [];
+	let convertedCode = []
 
 	function showData(life, points){
 		let pointsShow = document.getElementById('score')
@@ -27,14 +31,14 @@ let startGame = () => {
 	let bomb = document.createElement('img')
 	bomb.src='media/temp_bomb.png'
 	bomb.className = 'action'
+
 	let treasure = document.createElement('img')
 	treasure.src='media/temp_treasure.png'
 	treasure.className = 'action'
+
 	let powerUp = document.createElement('img')
 	powerUp.src='media/temp_powerup.png'
 	powerUp.className = 'action'
-
-	currentPosition.innerHTML = nicCage
 
 	document.body.onkeydown= event => {
 
@@ -59,9 +63,9 @@ let startGame = () => {
 	}
 	// moving left at position 1
 	move = (number) => {
-		currentPosition.innerHTML = brick;
+		currentPosition.innerHTML = '<img src="media/brick2.png">';
+		let newDivId = parseInt(currentPosition.id) + number;
 		basePoints++
-    let newDivId = parseInt(currentPosition.id) + number
 		moveFunction = (num) => {
 			newDivId = newDivId + num
 			let newDiv = document.getElementById(newDivId);
@@ -83,15 +87,28 @@ let startGame = () => {
 			if (lifeMeter > 0){
 					lifeMeter += points;
 				if(item === 'bomb'){
-					currentPosition.className = 'tiles'
-					currentPosition.innerHTML = '<img src="media/bombTile.png">'
-				} else if (item === 'power-up') {
-					currentPosition.className = 'tiles'
-					currentPosition.innerHTML = '<img src="media/powerUpTile.png">'
+					currentPosition.className = 'bomb-tiles'
+				} else if (item === 'power-up'){
+					currentPosition.className = 'power-up-tiles'
 				}
 			} else if (lifeMeter <= 0) {
 				window.alert("GAME OVER");
 			}
+		}
+	}
+
+	itemTiles = () => {
+		let bombs = document.getElementsByClassName('bomb-tiles')
+		let powerUps = document.getElementsByClassName('power-up-tiles')
+		let treasures = document.getElementsByClassName('treasure-tiles')
+		for(let i = 0; i < bombs.length; i++){
+			bombs[i].innerHTML = '<img src="media/bombTile.png">'
+		}
+		for(let i = 0; i < powerUps.length; i++){
+			powerUps[i].innerHTML = '<img src="media/powerUpTile.png">'
+		}
+		for(let i = 0; i < treasures.length; i++){
+			treasures[i].innerHTML = '<img src="media/treasureTile.png">'
 		}
 	}
 
@@ -111,16 +128,12 @@ let startGame = () => {
 				if(treasuresLeft.length === 3){
 					let win = window.open('media/treasure1.png');
 					setTimeout(function () { win.close();}, 200);
-					console.log('constitution')
-					currentPosition.className = 'tiles';
-					currentPosition.innerHTML = treasureTile
+					currentPosition.className = 'treasure-tiles';
 					basePoints+=50
 				} else if (treasuresLeft.length === 2){
 					let win = window.open('media/treasure2.png');
 					setTimeout(function () { win.close();}, 200);
-					console.log('glasses')
 					currentPosition.className = 'tiles';
-					currentPosition.innerHTML = treasureTile
 					basePoints+=100
 				} else if (treasuresLeft.length === 1){
 					console.log('code')
@@ -130,7 +143,6 @@ let startGame = () => {
 					alert('Memorize your code!')
 					alert(convertedCode);
 					currentPosition.className = 'tiles';
-					currentPosition.innerHTML = treasureTile
 					basePoints+=200
 				}
 			}
@@ -152,7 +164,6 @@ let startGame = () => {
 				console.log('exit')
 				let index = 0
 				exitIsVisable = true
-				//make color change to mark exit
 
 				if(!treasuresLeft.length){
 					window.alert("Press enter and type in the secret code")
@@ -198,17 +209,15 @@ let startGame = () => {
 				let exit = document.getElementsByClassName('exit')
 				exit[0].innerHTML = "<img src='media/exit.png'>"
 			}
-
 		}
 
 		addExitToBoard()
 		hitItem("bomb", -20)
 		hitItem("power-up", 5)
-		console.log(lifeMeter);
 		treasureChest()
 		levelUp()
 		showData(lifeMeter,basePoints)
-
+		itemTiles()
 	}
 
 
