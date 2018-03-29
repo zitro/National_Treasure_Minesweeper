@@ -9,6 +9,7 @@ let startGame = () => {
 	let treasuresLeft = document.getElementsByClassName('treasure')
 	let lifeMeter = 100;
 	let code = [];
+	let convertedCode = []
 
 	let bomb = document.createElement('img')
 	bomb.src='media/temp_bomb.png'
@@ -79,26 +80,22 @@ let startGame = () => {
 
 	function actionTimeImgs(item){
 		if (item === "bomb"){
-			console.log('bomb')
-			// let win = window.open('media/bomb.png');
-			// setTimeout(function () { win.close();}, 150);
+			let win = window.open('media/bomb.png');
+			setTimeout(function () { win.close();}, 150);
 		}else if(item === "power-up"){
-			console.log('power-up')
-			// let win = window.open('media/powerup.png');
-			// setTimeout(function () { win.close();}, 150);
+			let win = window.open('media/powerup.png');
+			setTimeout(function () { win.close();}, 150);
 		}
 	}
 
 	treasureChest = () => {
 			if(currentPosition.className === 'treasure'){
 				if(treasuresLeft.length === 3){
-					//window opens for constitution treasure
 					let win = window.open('media/treasure1.png');
 					setTimeout(function () { win.close();}, 2000);
 					console.log('constitution')
 					currentPosition.className = 'tiles';
 				} else if (treasuresLeft.length === 2){
-					//window opens for constitution glasses
 					let win = window.open('media/treasure2.png');
 					setTimeout(function () { win.close();}, 2000);
 					console.log('glasses')
@@ -106,17 +103,15 @@ let startGame = () => {
 				} else if (treasuresLeft.length === 1){
 					console.log('code')
 					codeMaker();
-					alert('Memorize your code!')
-					alert(code);
 					let win = window.open('media/treasure3.png');
 					setTimeout(function () { win.close();}, 2000);
+					alert('Memorize your code!')
+					alert(convertedCode);
 					currentPosition.className = 'tiles';
 				}
 			}
 
 		}
-		//make exit a different color after it has been walked over
-
 
 		codeMaker = () => {
   		let counter = 1
@@ -125,8 +120,10 @@ let startGame = () => {
     		code.push(keyDownEvents[index]);
     		counter ++;
   		}
+			convertKeyDownCode()
 		}
 		levelUp = () => {
+
 			if(currentPosition.className === 'exit'){
 				console.log('exit')
 				let index = 0
@@ -149,6 +146,23 @@ let startGame = () => {
 						}
 					}
 				}
+			}
+		}
+		let convertKeyDownCode = () => {
+			let keyDownDictionary = {
+				48: 0,
+				49: 1,
+				50: 2,
+				51: 3,
+				52: 4,
+				53: 5,
+				54: 6,
+				55: 7,
+				56: 8,
+				57: 9
+			}
+			for(let i = 0; i < code.length; i++){
+				convertedCode.push(keyDownDictionary[code[i]])
 			}
 		}
 
