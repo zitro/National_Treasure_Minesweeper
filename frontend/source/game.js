@@ -1,6 +1,9 @@
 
 let startGame = () => {
 	let brick = '<img src="media/brick2.png">'
+	let bombTile = '<img src="media/bombTile.png">'
+	let powerUpTile = '<img src="media/powerUpTile.png">'
+	let treasureTile = '<img src="media/treasureTile.png">'
 	let startPosition = document.getElementById("1")
 	let currentPosition = startPosition
 	let keyDownEvents = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
@@ -8,9 +11,20 @@ let startGame = () => {
 	let nicCage = nc[Math.floor(Math.random()*nc.length)];
 	let treasuresLeft = document.getElementsByClassName('treasure')
 	let lifeMeter = 100;
+	let basePoints = 0;
 	let code = [];
 	let convertedCode = []
 	let exit = document.getElementsByClassName('exit')
+	let exitIsVisable = false;
+
+
+	function showData(life, points){
+		let pointsShow = document.getElementById('score')
+		pointsShow.innerText = `Score: ${points}`
+
+		let lifemeterShow = document.getElementById('lifemeter')
+		lifemeterShow.innerHTML = `Life Meter: ${life}%`
+	}
 
 	let bomb = document.createElement('img')
 	bomb.src='media/temp_bomb.png'
@@ -49,6 +63,8 @@ let startGame = () => {
 	move = (number) => {
 		currentPosition.innerHTML = brick;
 		let newDivId = parseInt(currentPosition.id) + number;
+		basePoints++
+		console.log(basePoints)
 		if (newDivId <= 100 && newDivId > 0){
 			let newDiv = document.getElementById(newDivId);
 			newDiv.innerHTML = nc[Math.floor(Math.random()*nc.length)];
@@ -70,12 +86,18 @@ let startGame = () => {
 			actionTimeImgs(item)
 			if (lifeMeter > 0){
 				lifeMeter += points;
+				if(item === 'bomb'){
 				currentPosition.className = 'tiles'
+				currentPosition.innerHTML = bombTile
+			} else if (item === 'power-up') {
+				currentPosition.className = 'tiles'
+				currentPosition.innerHTML = powerUpTile
 			} else if (lifeMeter < 0) {
 				window.alert("GAME OVER")
 			}
 		}
 	}
+}
 
 
 	function actionTimeImgs(item){
@@ -85,6 +107,7 @@ let startGame = () => {
 		}else if(item === "power-up"){
 			let win = window.open('media/powerup.png');
 			setTimeout(function () { win.close();}, 150);
+			basePoints+=5
 		}
 	}
 
@@ -95,11 +118,15 @@ let startGame = () => {
 					setTimeout(function () { win.close();}, 2000);
 					console.log('constitution')
 					currentPosition.className = 'tiles';
+					currentPosition.innerHTML = treasureTile
+					basePoints+=50
 				} else if (treasuresLeft.length === 2){
 					let win = window.open('media/treasure2.png');
 					setTimeout(function () { win.close();}, 2000);
 					console.log('glasses')
 					currentPosition.className = 'tiles';
+					currentPosition.innerHTML = treasureTile
+					basePoints+=100
 				} else if (treasuresLeft.length === 1){
 					console.log('code')
 					codeMaker();
@@ -108,6 +135,8 @@ let startGame = () => {
 					alert('Memorize your code!')
 					alert(convertedCode);
 					currentPosition.className = 'tiles';
+					currentPosition.innerHTML = treasureTile
+					basePoints+=200
 				}
 			}
 
@@ -127,6 +156,7 @@ let startGame = () => {
 			if(currentPosition.className === 'exit'){
 				console.log('exit')
 				let index = 0
+				exitIsVisable = true
 				//make color change to mark exit
 
 				if(!treasuresLeft.length){
@@ -169,8 +199,10 @@ let startGame = () => {
 			}
 		}
 		let addExitToBoard = () => {
-			let exit = document.getElementsByClassName('exit')
-			exit[0].innerHTML = "<img src='media/exit.png'>"
+			if(exitIsVisable === true){
+				let exit = document.getElementsByClassName('exit')
+				exit[0].innerHTML = "<img src='media/exit.png'>"
+			}
 
 		}
 
@@ -180,11 +212,9 @@ let startGame = () => {
 		console.log(lifeMeter);
 		treasureChest()
 		levelUp()
+		showData(lifeMeter,basePoints)
 
 	}
-
-
-
 
 
 }

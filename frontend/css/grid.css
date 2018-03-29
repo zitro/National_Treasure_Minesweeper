@@ -7,13 +7,18 @@
   grid-gap: 1px;
   grid-auto-rows: minmax(1px, auto);
 
-
-	#nicCage {
-	    width: 50px;
-	    height: 50px;
-	    position: absolute;
-	    background: red;
 	}
+
+	.titleArea {
+		/* border: 1px solid grey; */
+		/* background-image: url("http://bryanortiz.com/city1.jpg"); */
+		background-color: black;
+	  display: grid;
+	  grid-template-columns: repeat(3, 1fr);
+	  grid-gap: 1px;
+	  grid-auto-rows: minmax(1px, auto);
+
+		}
 
 
 #action{
