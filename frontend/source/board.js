@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', event =>{
 		let boardDiv = document.getElementById('board_container')
 		let cells = 101;
 		let i = 1
-		let brick = '<img src="media/brick2.png">'
+		let brick = '<img src="media/brick.png">'
 
 		while(i < cells){
 		let cellDiv = document.createElement('div')
@@ -32,9 +32,6 @@ document.addEventListener('DOMContentLoaded', event =>{
 	}
 
 	fillBoard()
-	$('.enter_link').click(function() {
-			 $(this).parent().fadeOut(500);
-});
 	startGame()
 })
 
