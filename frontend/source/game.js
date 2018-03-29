@@ -61,7 +61,7 @@ let startGame = () => {
 				break;
 		}
 	}
-	// moving left at position 1
+
 	move = (number) => {
 		currentPosition.innerHTML = '<img src="media/brick2.png">';
 		let newDivId = parseInt(currentPosition.id) + number;
