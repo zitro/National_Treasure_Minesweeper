@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', event =>{
 	}
 
 	fillBoard()
+	$('.enter_link').click(function() {
+			 $(this).parent().fadeOut(500);
+});
 	startGame()
 })
 
