@@ -64,7 +64,6 @@ let startGame = () => {
 			currentPosition = newDiv;
 		}
 
-		//how to do game over
 	hitItem = (item, points) => {
 		if (currentPosition.className === item){
 			actionTimeImgs(item)
@@ -129,7 +128,7 @@ let startGame = () => {
 				let index = 0
 				//make color change to mark exit
 				if(!treasuresLeft.length){
-					window.alert("enter the secret code")
+					window.alert("Press enter and type in the secret code")
 					document.body.onkeydown = event => {
 						const key = event.which
 
