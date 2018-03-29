@@ -92,8 +92,9 @@ let startGame = () => {
 			} else if (item === 'power-up') {
 				currentPosition.className = 'tiles'
 				currentPosition.innerHTML = powerUpTile
-			} else if (lifeMeter < 0) {
-				window.alert("GAME OVER")
+			} else if (lifeMeter <= 0) {
+				window.alert("GAME OVER");
+				// window.location.reload(false);
 			}
 		}
 	}
