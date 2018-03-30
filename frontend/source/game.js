@@ -28,17 +28,17 @@ let startGame = () => {
 		lifemeterShow.innerHTML = `Life Meter: ${life}%`
 	}
 
-	let bomb = document.createElement('img')
-	bomb.src='media/temp_bomb.png'
-	bomb.className = 'action'
-
-	let treasure = document.createElement('img')
-	treasure.src='media/temp_treasure.png'
-	treasure.className = 'action'
-
-	let powerUp = document.createElement('img')
-	powerUp.src='media/temp_powerup.png'
-	powerUp.className = 'action'
+	// let bomb = document.createElement('img')
+	// bomb.src='media/temp_bomb.png'
+	// bomb.className = 'action'
+	//
+	// let treasure = document.createElement('img')
+	// treasure.src='media/temp_treasure.png'
+	// treasure.className = 'action'
+	//
+	// let powerUp = document.createElement('img')
+	// powerUp.src='media/temp_powerup.png'
+	// powerUp.className = 'action'
 
 	document.body.onkeydown= event => {
 
@@ -91,6 +91,9 @@ let startGame = () => {
 				} else if (item === 'power-up'){
 					currentPosition.className = 'power-up-tiles'
 				}
+			} else if (lifeMeter <= 0){
+				gameOver();
+				alert('GAME OVER... please try again')
 			}
 		}
 	}
@@ -172,6 +175,7 @@ let startGame = () => {
 						if(code[index] === key){
 							index++;
 							if(index === code.length){
+								gameOver()
 								alert('THE CODE HAS BEEN CRACKED!!!! YOU WIN!!!!');
 
 								index = 0;
@@ -211,16 +215,11 @@ let startGame = () => {
 		}
 
 		let gameOver = () => {
-			if (lifeMeter <= 0) {
 				let boardDiv = document.getElementById('board_container')
 				$(boardDiv).empty()
 
-
-
 				fillBoard()
 				startGame()
-				alert('GAME OVER... please try again')
-			}
 		}
 
 
@@ -231,7 +230,6 @@ let startGame = () => {
 		levelUp()
 		showData(lifeMeter,basePoints)
 		itemTiles()
-		gameOver()
 
 	}
 
