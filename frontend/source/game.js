@@ -115,10 +115,11 @@ let startGame = () => {
 	function actionTimeImgs(item){
 		if (item === "bomb"){
 			let win = window.open('media/bomb.png');
-			setTimeout(function () { win.close();}, 150);
+			setTimeout(function () { win.close();}, 1500);
+			basePoints-=20
 		}else if(item === "power-up"){
 			let win = window.open('media/powerup.png');
-			setTimeout(function () { win.close();}, 150);
+			setTimeout(function () { win.close();}, 1500);
 			basePoints+=5
 		}
 	}
@@ -127,19 +128,19 @@ let startGame = () => {
 			if(currentPosition.className === 'treasure'){
 				if(treasuresLeft.length === 3){
 					let win = window.open('media/treasure1.png');
-					setTimeout(function () { win.close();}, 200);
+					setTimeout(function () { win.close();}, 2000);
 					currentPosition.className = 'treasure-tiles';
 					basePoints+=50
 				} else if (treasuresLeft.length === 2){
 					let win = window.open('media/treasure2.png');
-					setTimeout(function () { win.close();}, 200);
+					setTimeout(function () { win.close();}, 2000);
 					currentPosition.className = 'tiles';
 					basePoints+=100
 				} else if (treasuresLeft.length === 1){
 					console.log('code')
 					codeMaker();
 					let win = window.open('media/treasure3.png');
-					setTimeout(function () { win.close();}, 200);
+					setTimeout(function () { win.close();}, 2000);
 					alert('Memorize your code!')
 					alert(convertedCode);
 					currentPosition.className = 'tiles';
@@ -212,7 +213,7 @@ let startGame = () => {
 		}
 
 		addExitToBoard()
-		hitItem("bomb", -20)
+		hitItem("bomb", -5)
 		hitItem("power-up", 5)
 		treasureChest()
 		levelUp()

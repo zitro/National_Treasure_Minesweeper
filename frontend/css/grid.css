@@ -21,7 +21,18 @@
 		}
 
 
-#action{
-float: left;
-margin: 0px 15px 15px 0px;
+	#action{
+		float: left;
+		margin: 0px 15px 15px 0px;
+	}
+	i{
+		color:gold;
+		border-color:red;
+		border-width: medium;
+	}
+#welcome{
+	color:gold;
+	border-color:red;
+	border-width: medium;
+	align-items: center;
 }
