@@ -1,18 +1,28 @@
+const BASE_URL = 'http://localhost:3000';
+
+
+userForm = document.getElementById('userForm')
+userForm.addEventListener('submit', (event) => {
+				event.preventDefault()
+				userName = document.getElementById('userName')
+				const submitVal = userName.value
+				//still need to get points
+				addName(points, submitVal)
+			})
+
+
+
+
 
 let getAllUsers = () => {
 	return fetch("http://localhost:3000/users")
 					.then(res => res.json())
 }
 
-// .then(json => {
-// 	 console.log(json.filter((trainer) => {
-// 					return trainer.pokemons.length >= 1
-// 				}))
-// })
 
 getAllUsers()
 .then(json => {
-	 console.log(json)
+	 // console.log(json)
 })
 
 
@@ -21,25 +31,27 @@ getAllUsers()
     let usersContainer = document.getElementById('users-container')
     json.forEach(user => {
       let leaderBoardDiv = document.createElement('div')
-      leaderBoardDiv.innerText = user.name
-
-      leaderBoardDiv.addEventListener('click', function(event){
-        let pokemonContainer = document.getElementById('pokemon-container')
-        pokemonContainer.innerHTML = ""
-
-        user.pokemons.forEach(pokemon => {
-          let pokemonLi = document.createElement('li')
-
-          pokemonLi.innerText = `${pokemon.name} (${pokemon.species})`
-
-          pokemonContainer.append(pokemonLi)
-
-          // Same as the line above, but concats the innerHTML of both
-          // pokemonContainer.innerHTML += pokemonLi.innerHTML
-        })
-      })
-
+      leaderBoardDiv.innerHTML = (`
+				<p>user.name</p>
+				<p>user.score</p>
+				`)
       usersContainer.append(leaderBoardDiv)
     })
   })
-})
+
+
+function addName(val, name) {
+    fetch(`${BASE_URL}/users`, {
+      method: 'POST',
+      headers: {
+				'Content-Type': 'application/json',
+    		'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+				points: val
+      })
+    })
+    .then((res) => { return res.json() })
+    .then(json => { console.log('Updated JSON:' + json)})
+  }

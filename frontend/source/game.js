@@ -13,8 +13,8 @@ let startGame = () => {
 	let exit = document.getElementsByClassName('exit')
 	let exitIsVisable = false;
 
-	let lifeMeter = 50;
-	let basePoints = 0;
+	let lifeMeter = 100;
+	basePoints = 0;
 
 	let keyDownEvents = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
 	let code = [];
@@ -65,7 +65,7 @@ let startGame = () => {
 	move = (number) => {
 		currentPosition.innerHTML = '<img src="media/brick2.png">';
 		let newDivId = parseInt(currentPosition.id) + number;
-		basePoints++
+		basePoints+=3
 		moveFunction = (num) => {
 			newDivId = newDivId + num
 			let newDiv = document.getElementById(newDivId);
@@ -113,12 +113,12 @@ let startGame = () => {
 	function actionTimeImgs(item){
 		if (item === "bomb"){
 			let win = window.open('media/bomb.png');
-			setTimeout(function () { win.close();}, 150);
-			basePoints-=20
+			setTimeout(function () { win.close();}, 500);
+			basePoints-=10
 		}else if(item === "power-up"){
 			let win = window.open('media/powerup.png');
-			setTimeout(function () { win.close();}, 150);
-			basePoints+=5
+			setTimeout(function () { win.close();}, 500);
+			basePoints+=25
 		}
 	}
 
@@ -126,12 +126,12 @@ let startGame = () => {
 			if(currentPosition.className === 'treasure'){
 				if(treasuresLeft.length === 3){
 					let win = window.open('media/treasure1.png');
-					setTimeout(function () { win.close();}, 200);
+					setTimeout(function () { win.close();}, 2000);
 					currentPosition.className = 'treasure-tiles';
 					basePoints+=50
 				} else if (treasuresLeft.length === 2){
 					let win = window.open('media/treasure2.png');
-					setTimeout(function () { win.close();}, 200);
+					setTimeout(function () { win.close();}, 2000);
 					currentPosition.className = 'treasure-tiles';
 					basePoints+=100
 				} else if (treasuresLeft.length === 1){
@@ -215,9 +215,11 @@ let startGame = () => {
 				let boardDiv = document.getElementById('board_container')
 				$(boardDiv).empty()
 
+
+
 				fillBoard()
 				startGame()
-				basePoints = 0;
+				alert('GAME OVER... please try again')
 			}
 		}
 

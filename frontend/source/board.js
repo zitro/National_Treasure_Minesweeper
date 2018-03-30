@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', event =>{
 		.modal('show');
 	}
 
+
 	startSplash()
 	fillBoard()
 	startGame()
@@ -28,7 +29,7 @@ function fillBoard () {
 	i++;
 	}
 	addToBoard(3, "treasure");
-	addToBoard(20, "bomb");
+	addToBoard(5, "bomb");
 	addToBoard(5, "power-up");
 	addToBoard(1, "exit");
 }
@@ -48,3 +49,8 @@ function addToBoard (num, className) {
 // return fetch(http://localhost:3000/users)
 // .then(res => res.json())
 // .then(console.log(json))}
+
+// function leaderSplash(){
+// 	$('.ui.basic.modal.2')
+// 	.modal('show');
+// }
