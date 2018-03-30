@@ -13,7 +13,7 @@ let startGame = () => {
 	let exit = document.getElementsByClassName('exit')
 	let exitIsVisable = false;
 
-	let lifeMeter = 100;
+	let lifeMeter = 50;
 	let basePoints = 0;
 
 	let keyDownEvents = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
@@ -91,8 +91,6 @@ let startGame = () => {
 				} else if (item === 'power-up'){
 					currentPosition.className = 'power-up-tiles'
 				}
-			} else if (lifeMeter <= 0) {
-				window.alert("GAME OVER");
 			}
 		}
 	}
@@ -115,11 +113,11 @@ let startGame = () => {
 	function actionTimeImgs(item){
 		if (item === "bomb"){
 			let win = window.open('media/bomb.png');
-			setTimeout(function () { win.close();}, 1500);
+			setTimeout(function () { win.close();}, 150);
 			basePoints-=20
 		}else if(item === "power-up"){
 			let win = window.open('media/powerup.png');
-			setTimeout(function () { win.close();}, 1500);
+			setTimeout(function () { win.close();}, 150);
 			basePoints+=5
 		}
 	}
@@ -128,22 +126,22 @@ let startGame = () => {
 			if(currentPosition.className === 'treasure'){
 				if(treasuresLeft.length === 3){
 					let win = window.open('media/treasure1.png');
-					setTimeout(function () { win.close();}, 2000);
+					setTimeout(function () { win.close();}, 200);
 					currentPosition.className = 'treasure-tiles';
 					basePoints+=50
 				} else if (treasuresLeft.length === 2){
 					let win = window.open('media/treasure2.png');
-					setTimeout(function () { win.close();}, 2000);
-					currentPosition.className = 'tiles';
+					setTimeout(function () { win.close();}, 200);
+					currentPosition.className = 'treasure-tiles';
 					basePoints+=100
 				} else if (treasuresLeft.length === 1){
 					console.log('code')
 					codeMaker();
 					let win = window.open('media/treasure3.png');
-					setTimeout(function () { win.close();}, 2000);
+					setTimeout(function () { win.close();}, 200);
 					alert('Memorize your code!')
 					alert(convertedCode);
-					currentPosition.className = 'tiles';
+					currentPosition.className = 'treasure-tiles';
 					basePoints+=200
 				}
 			}
@@ -212,6 +210,18 @@ let startGame = () => {
 			}
 		}
 
+		let gameOver = () => {
+			if (lifeMeter <= 0) {
+				let boardDiv = document.getElementById('board_container')
+				$(boardDiv).empty()
+
+				fillBoard()
+				startGame()
+				basePoints = 0;
+			}
+		}
+
+
 		addExitToBoard()
 		hitItem("bomb", -5)
 		hitItem("power-up", 5)
@@ -219,6 +229,8 @@ let startGame = () => {
 		levelUp()
 		showData(lifeMeter,basePoints)
 		itemTiles()
+		gameOver()
+
 	}
 
 

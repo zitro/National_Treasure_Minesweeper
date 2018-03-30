@@ -28,8 +28,8 @@ function fillBoard () {
 	i++;
 	}
 	addToBoard(3, "treasure");
-	addToBoard(10, "bomb");
-	addToBoard(10, "power-up");
+	addToBoard(20, "bomb");
+	addToBoard(5, "power-up");
 	addToBoard(1, "exit");
 }
 
