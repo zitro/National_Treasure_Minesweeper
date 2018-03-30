@@ -4,9 +4,14 @@ document.addEventListener('DOMContentLoaded', event =>{
 	// this does the splash screen
 	function startSplash(){
 		$('.ui.basic.modal')
+		.modal('setting', 'closable', false)
 		.modal('show');
 	}
-
+	// function sSplash(test = 'hide'){
+	// 	$('.ui.modal')
+	// 	.modal('setting', 'closable', false)
+	// 	.modal(`${test}`);
+	// }
 
 	startSplash()
 	fillBoard()
@@ -30,7 +35,7 @@ function fillBoard () {
 	}
 	addToBoard(3, "treasure");
 	addToBoard(5, "bomb");
-	addToBoard(5, "power-up");
+	addToBoard(2, "power-up");
 	addToBoard(1, "exit");
 }
 
@@ -44,13 +49,3 @@ function addToBoard (num, className) {
 		counter++;
 	}
 }
-
-// function getUsers(){
-// return fetch(http://localhost:3000/users)
-// .then(res => res.json())
-// .then(console.log(json))}
-
-// function leaderSplash(){
-// 	$('.ui.basic.modal.2')
-// 	.modal('show');
-// }

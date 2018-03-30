@@ -1,13 +1,13 @@
 const BASE_URL = 'http://localhost:3000';
 
 
-userForm = document.getElementById('userForm')
-userForm.addEventListener('submit', (event) => {
+userForm = document.getElementById('greenButton')
+userForm.addEventListener('click', (event) => {
 				event.preventDefault()
 				userName = document.getElementById('userName')
 				const submitVal = userName.value
 				//still need to get points
-				addName(points, submitVal)
+				addNamePoints(submitVal, 0)
 			})
 
 
@@ -20,27 +20,23 @@ let getAllUsers = () => {
 }
 
 
-getAllUsers()
-.then(json => {
-	 // console.log(json)
-})
+
+// getAllUsers()
+//   .then(json => {
+//     let usersContainer = document.getElementById('users-container')
+//     json.forEach(user => {
+//       let leaderBoardDiv = document.createElement('div')
+//       leaderBoardDiv.innerHTML = (`
+// 				<p>user.name</p>
+// 				<p>user.points</p>
+// 				`)
+//       usersContainer.append(leaderBoardDiv)
+//     })
+//   })
 
 
-getAllUsers()
-  .then(json => {
-    let usersContainer = document.getElementById('users-container')
-    json.forEach(user => {
-      let leaderBoardDiv = document.createElement('div')
-      leaderBoardDiv.innerHTML = (`
-				<p>user.name</p>
-				<p>user.score</p>
-				`)
-      usersContainer.append(leaderBoardDiv)
-    })
-  })
-
-
-function addName(val, name) {
+// this works for posting a new user
+function addNamePoints(name, points = 0) {
     fetch(`${BASE_URL}/users`, {
       method: 'POST',
       headers: {
@@ -48,10 +44,18 @@ function addName(val, name) {
     		'Accept': 'application/json'
       },
       body: JSON.stringify({
-        name: name,
-				points: val
+				points: points,
+				name: name,
       })
     })
     .then((res) => { return res.json() })
     .then(json => { console.log('Updated JSON:' + json)})
   }
+
+
+
+	// console.log(getAllUsers());
+	getAllUsers()
+	.then(json => {
+		 console.log(json)
+	})

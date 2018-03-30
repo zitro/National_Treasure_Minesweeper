@@ -215,6 +215,7 @@ let startGame = () => {
 		}
 
 		let gameOver = () => {
+				// sSplash('show')
 				let boardDiv = document.getElementById('board_container')
 				$(boardDiv).empty()
 
