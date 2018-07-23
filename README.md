@@ -42,7 +42,7 @@ Step 6. ::run (rails s) from the terminal inside the nationalTreasure-backend di
 ```
 Step 7. ::run (npm start) from the terminal inside the frontend directory
 
-```
+
 
 ## Deployment
 
